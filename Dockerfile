@@ -1,5 +1,4 @@
 FROM centos:7
-MAINTAINER Severalnines <ashraf@severalnines.com>
 
 RUN echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.3/centos7-amd64\nenabled = 1\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1"  > /etc/yum.repos.d/MariaDB.repo
 
