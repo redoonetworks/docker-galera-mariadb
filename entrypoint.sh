@@ -20,8 +20,8 @@ echo >&2 "Content of $DATADIR:"
 ls -al $DATADIR
 
 if [ ! -s "$DATADIR/grastate.dat" ]; then
+	INITIALIZED=1
 	if [ ! -f "$DATADIR/initialized.dat" ]; then
-		INITIALIZED=1
 		if [ -z "$MYSQL_ROOT_PASSWORD" -a -z "$MYSQL_ALLOW_EMPTY_PASSWORD" -a -z "$MYSQL_RANDOM_ROOT_PASSWORD" ]; then
 			echo >&2 'error: database is uninitialized and password option is not specified '
 			echo >&2 '  You need to specify one of MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD'
@@ -187,7 +187,7 @@ else
 				cat $TMP
 				seqno=$(cat $TMP | tr ' ' "\n" | grep -e '[a-z0-9]*-[a-z0-9]*:[0-9]' | head -1 | cut -d ":" -f 2)
 				# if this is a new container, set seqno to 0
-				if [ $INITIALIZED -eq 1 ]; then
+				if [ "$INITIALIZED" = "1" ]; then
 					echo >&2 ">> This is a new container, thus setting seqno to 0."
 					seqno=0
 				fi
