@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -f /entrypoint.executing ]]; then
-  exit 0
+	exit 0
 fi
 
 STATE_QUERY="SHOW GLOBAL STATUS WHERE variable_name='wsrep_local_state_comment'"
@@ -14,7 +14,7 @@ if [[ ! -z $1 ]]; then
 	[[ $1 == "--readiness" ]] && READINESS=1
 	[[ $1 == "--liveness" ]] && LIVENESS=1
 else
-  LIVENESS=1
+	LIVENESS=1
 fi
 
 # state == Initialized --> fail all checks
@@ -28,16 +28,16 @@ fi
 
 state=$(mysql --skip-column-names --quick --no-auto-rehash --connect-timeout=10 --protocol=socket --user=root --password="$MYSQL_ROOT_PASSWORD" -e "$STATE_QUERY;" 2>/dev/null | awk '{print $2;}')
 if [[ $? != 0 || -z "$state" ]]; then
-  echo "1 -- command failed or state empty: $state"
-  exit 1
+	echo "1 -- command failed or state empty: $state"
+	exit 1
 fi
 if [[ "$state" == "Initialized" ]]; then
-  echo "1 -- $state"
-  exit 1
+	echo "1 -- $state"
+	exit 1
 fi
 if [[ "$state" == "Synced" ]]; then
-  echo "0 -- $state"
-  exit 0
+	echo "0 -- $state"
+	exit 0
 fi
 echo $READINESS
 exit $READINESS
