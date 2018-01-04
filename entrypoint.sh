@@ -8,7 +8,7 @@ if [ "${1:0:1}" = '-' ]; then
 	CMDARG="$@"
 fi
 
-[ -z "$TTL" ] && TTL=10
+[ -z "$TTL" ] && TTL=30
 
 if [ -z "$CLUSTER_NAME" ]; then
 	echo >&2 'Error:  You need to specify CLUSTER_NAME'
