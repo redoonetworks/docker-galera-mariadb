@@ -1,4 +1,4 @@
-# MariaDB 10.3 Docker Image (Galera) #
+# MariaDB 10.2 Docker Image (Galera) #
 
 
 ## Table of Contents ##
@@ -15,7 +15,7 @@
 
 ## Overview ##
 
-The image supports running MariaDB 10.3 (Galera is included) with Docker orchestration tool like Docker Engine Swarm Mode and Kubernetes and requires an etcd (standalone or cluster) to run homogeneously. It can also run on a standalone environment.
+The image supports running MariaDB 10.2 (Galera is included) with Docker orchestration tool like Docker Engine Swarm Mode and Kubernetes and requires an etcd (standalone or cluster) to run homogeneously. It can also run on a standalone environment.
 
 ## Requirement ##
 
@@ -29,7 +29,7 @@ To pull the image, simply:
 $ docker pull severalnines/mariadb
 ```
 
-The image consists of MariaDB 10.3 (Galera ready) and all of its components:
+The image consists of MariaDB 10.2 (Galera ready) and all of its components:
 * MariaDB client package.
 * Percona Xtrabackup.
 * jq - Lightweight and flexible command-line JSON processor.
