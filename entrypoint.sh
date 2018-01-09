@@ -67,6 +67,7 @@ if [ ! -s "$DATADIR/grastate.dat" ]; then
 			CREATE USER 'xtrabackup'@'localhost' IDENTIFIED BY '${XTRABACKUP_PASSWORD}';
 			GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO 'xtrabackup'@'localhost';
 			GRANT REPLICATION CLIENT ON *.* TO monitor@'%' IDENTIFIED BY 'monitor';
+			GRANT SELECT, PROCESS, SHOW DATABASES, SHOW VIEW ON *.* TO metrics@'localhost' IDENTIFIED BY 'metrics';
 			DROP DATABASE IF EXISTS test ;
 			FLUSH PRIVILEGES ;
 		EOSQL
